@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blue‑Card Staff Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- include style.css -->
+  <script src="auth.js"></script>
+  <script src="data.js"></script>
+</head>
+
+<body onload="requireLogin(); loadDashboard();">
+
+<header>
+  <div class="logo"><span>Blue</span>‑Card Staff</div>
+  <div><span class="online-dot"></span> Staff Online</div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Search Customers</h2>
+    <input class="search" id="searchBar" placeholder="Search…" oninput="searchCustomers()">
+  </div>
+
+  <div class="card">
+    <h2>Active Companies</h2>
+    <div id="companyList"></div>
+  </div>
+
+  <div class="card">
+    <h2>Add New Customer</h2>
+    <input id="newName" class="search" placeholder="Company name">
+    <input id="newEmail" class="search" placeholder="Contact email">
+    <button class="btn" onclick="addCustomer()">Add Customer</button>
+  </div>
+
+</div>
+
+<script>
+  function loadDashboard() {
+    renderList(customers);
+  }
+
+  function renderList(list) {
+    const container = document.getElementById("companyList");
+    container.innerHTML = "";
+    list.forEach((c, i) => {
+      const div = document.createElement("div");
+      div.className = "customer";
+      div.innerHTML = `<strong>${c.name}</strong><br>${c.email}`;
+      div.onclick = () => window.location.href = "customer.html?id=" + i;
+      container.appendChild(div);
+    });
+  }
+
+  function searchCustomers() {
+    const q = document.getElementById("searchBar").value.toLowerCase();
+    const filtered = customers.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      c.email.toLowerCase().includes(q)
+    );
+    renderList(filtered);
+  }
+
+  function addCustomer() {
+    const name = document.getElementById("newName").value;
+    const email = document.getElementById("newEmail").value;
+    if (!name || !email) return alert("Enter name + email");
+    customers.push({ name, email, notes: [] });
+    renderList(customers);
+  }
+</script>
+
+</body>
+</html>
