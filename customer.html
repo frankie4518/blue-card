@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Customer Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- include style.css -->
+  <link rel="stylesheet" href="style.css">
   <script src="auth.js"></script>
-  <script src="data.js"></script>
+  <script src="api.js"></script>
 </head>
-
-<body onload="requireLogin(); loadCustomer();">
+<body onload="initCustomerPage();">
 
 <header>
   <a href="staff.html" class="btn-outline">← Back</a>
 </header>
 
 <div class="container">
-
   <div class="card">
     <h2 id="custName"></h2>
     <p id="custEmail"></p>
@@ -27,24 +25,35 @@
     <textarea id="newNote" class="note-box" placeholder="Write a note…"></textarea>
     <button class="btn" onclick="addNote()">Add Note</button>
   </div>
-
 </div>
 
 <script>
-  function loadCustomer() {
-    const id = new URLSearchParams(window.location.search).get("id");
-    const c = customers[id];
+  let customerId = null;
+  let currentCustomer = null;
 
-    document.getElementById("custName").textContent = c.name;
-    document.getElementById("custEmail").textContent = c.email;
+  async function initCustomerPage() {
+    requireLogin();
+    const params = new URLSearchParams(window.location.search);
+    customerId = params.get("id");
+    if (!customerId) {
+      window.location.href = "staff.html";
+      return;
+    }
 
-    renderNotes(c);
+    try {
+      currentCustomer = await api.getCustomer(customerId);
+      document.getElementById("custName").textContent = currentCustomer.name;
+      document.getElementById("custEmail").textContent = currentCustomer.email;
+      renderNotes(currentCustomer.notes || []);
+    } catch (e) {
+      alert("Error loading customer");
+    }
   }
 
-  function renderNotes(c) {
+  function renderNotes(notes) {
     const container = document.getElementById("notes");
     container.innerHTML = "";
-    c.notes.forEach(n => {
+    notes.forEach(n => {
       const div = document.createElement("div");
       div.className = "note";
       div.innerHTML = `<strong>${n.time}</strong><br>${n.text}`;
@@ -52,15 +61,19 @@
     });
   }
 
-  function addNote() {
-    const id = new URLSearchParams(window.location.search).get("id");
-    const c = customers[id];
-    const text = document.getElementById("newNote").value;
+  async function addNote() {
+    const text = document.getElementById("newNote").value.trim();
     if (!text) return;
 
-    c.notes.push({ text, time: new Date().toLocaleString() });
-    document.getElementById("newNote").value = "";
-    renderNotes(c);
+    try {
+      await api.addNote(customerId, text);
+      const updated = await api.getCustomer(customerId);
+      currentCustomer = updated;
+      renderNotes(updated.notes || []);
+      document.getElementById("newNote").value = "";
+    } catch (e) {
+      alert("Error adding note");
+    }
   }
 </script>
 
