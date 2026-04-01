@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #0b1020;
+    color: #e5e7eb;
+  }
+
+  header {
+    padding: 1rem 2rem;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .note {
+    padding: 0.8rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    margin-bottom: 0.6rem;
+  }
+
+  .note-box {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #60a5fa, #2563eb);
+    color: white;
+    font-weight: 600;
+    margin-top: 0.8rem;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" style="color:#93c5fd;text-decoration:none;">← Back to Dashboard</a>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2 id="custName"></h2>
+    <p id="custEmail"></p>
+  </div>
+
+  <div class="card">
+    <h2>Notes Timeline</h2>
+    <div id="notes"></div>
+    <textarea id="newNote" class="note-box" placeholder="Write a note…"></textarea>
+    <button class="btn" onclick="addNote()">Add Note</button>
+  </div>
+
+</div>
+
+<script>
+  const customers = [
+    { name: "Great Lumley Community Centre", email: "contact@glcc.co.uk", notes: [] },
+    { name: "North East Fitness", email: "info@nef.co.uk", notes: [] }
+  ];
+
+  const id = new URLSearchParams(window.location.search).get("id");
+  const customer = customers[id];
+
+  document.getElementById("custName").textContent = customer.name;
+  document.getElementById("custEmail").textContent = customer.email;
+
+  function renderNotes() {
+    const container = document.getElementById("notes");
+    container.innerHTML = "";
+    customer.notes.forEach(n => {
+      const div = document.createElement("div");
+      div.className = "note";
+      div.innerHTML = `<strong>${n.time}</strong><br>${n.text}`;
+      container.appendChild(div);
+    });
+  }
+
+  function addNote() {
+    const text = document.getElementById("newNote").value;
+    if (!text) return;
+    customer.notes.push({
+      text,
+      time: new Date().toLocaleString()
+    });
+    document.getElementById("newNote").value = "";
+    renderNotes();
+  }
+
+  renderNotes();
+</script>
+
+</body>
+</html>
