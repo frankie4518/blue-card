@@ -100,3 +100,96 @@ header {
   display: inline-block;
   margin-right: 6px;
 }
+/* HERO */
+.hero {
+  padding: 4rem 2rem;
+  text-align: left;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: #334155;
+}
+
+/* GRID SECTIONS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* FAQ ACCORDION */
+.faq-item {
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  background: #f8fbff;
+}
+
+.faq-question {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faq-answer {
+  padding: 1rem;
+  display: none;
+  border-top: 1px solid #dbeafe;
+}
+
+/* TEAM */
+.team-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: #eef6ff;
+  border-radius: 12px;
+  border: 1px solid #dbeafe;
+}
+
+/* DARK MODE */
+.dark body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .team-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .faq-item {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .faq-answer {
+  border-color: #334155;
+}
+
+.dark header {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .btn {
+  background: #3b82f6;
+}
+
+.dark .btn-outline {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
