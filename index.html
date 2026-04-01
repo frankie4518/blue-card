@@ -10,26 +10,118 @@
 
 <header>
   <div class="logo"><span>Blue</span>‑Card</div>
-  <a onclick="login()">Staff Login</a>
+  <div>
+    <button class="btn-outline" onclick="toggleDarkMode()">Dark Mode</button>
+    <a href="staff.html" class="btn-outline">Staff Login</a>
+  </div>
 </header>
 
 <div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Hosting that feels human.</h1>
+    <p>
+      Blue‑Card keeps your website online, secure and cared for — with the calm, clinical reliability of NHS‑style systems and the modern polish of Microsoft Azure.
+    </p>
+    <br>
+    <a href="mailto:sales@blue-card.co.uk" class="btn">Get Started</a>
+  </section>
+
+  <!-- WHY WE'RE DIFFERENT -->
   <div class="card">
-    <h1>Simple, reliable hosting for small businesses.</h1>
-    <p>Blue‑Card keeps your website online, secure and cared for — with real humans behind it.</p>
-    <a href="mailto:sales@blue-card.co.uk" class="btn">Email to Register</a>
+    <h2>Why we’re different</h2>
+    <div class="grid" style="margin-top:1.5rem;">
+      <div>
+        <h3>Clinical reliability</h3>
+        <p>Inspired by NHS and GOV.UK design — clear, calm, trustworthy.</p>
+      </div>
+      <div>
+        <h3>Microsoft‑style clarity</h3>
+        <p>Clean layouts, strong typography, and a focus on usability.</p>
+      </div>
+      <div>
+        <h3>Human support</h3>
+        <p>No bots. No scripts. Just real people who care about your site.</p>
+      </div>
+      <div>
+        <h3>Everything included</h3>
+        <p>Backups, security, DNS, uptime monitoring — all in one price.</p>
+      </div>
+    </div>
   </div>
 
+  <!-- HOW IT WORKS -->
   <div class="card">
-    <h2>What we do</h2>
-    <ul>
-      <li>Managed hosting</li>
-      <li>Domain & DNS care</li>
-      <li>Security & updates</li>
-      <li>Human support</li>
-    </ul>
+    <h2>How it works</h2>
+    <div class="grid" style="margin-top:1.5rem;">
+      <div>
+        <h3>1. We onboard you</h3>
+        <p>Send us your domain or website details — we handle the setup.</p>
+      </div>
+      <div>
+        <h3>2. We monitor everything</h3>
+        <p>Uptime, security, renewals, backups — all taken care of.</p>
+      </div>
+      <div>
+        <h3>3. You get peace of mind</h3>
+        <p>Your website stays online, fast and secure — without the stress.</p>
+      </div>
+    </div>
   </div>
+
+  <!-- TEAM -->
+  <div class="card">
+    <h2>Meet the team</h2>
+    <div class="grid" style="margin-top:1.5rem;">
+      <div class="team-card">
+        <h3>Frankie</h3>
+        <p>Founder & Systems Architect</p>
+      </div>
+      <div class="team-card">
+        <h3>Support Team</h3>
+        <p>Real humans, real help — always here for you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card">
+    <h2>FAQ</h2>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">What’s included in the £15/month?</div>
+      <div class="faq-answer">Everything — hosting, backups, DNS, security, monitoring, and support.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">Do you migrate my website?</div>
+      <div class="faq-answer">Yes — we handle the full migration at no extra cost.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">Is there a contract?</div>
+      <div class="faq-answer">No — cancel anytime.</div>
+    </div>
+
+  </div>
+
 </div>
+
+<footer style="text-align:center; padding:2rem; color:#64748b;">
+  © Blue‑Card — Hosting & Web Solutions
+</footer>
+
+<script>
+function toggleFAQ(el) {
+  const answer = el.nextElementSibling;
+  answer.style.display = answer.style.display === "block" ? "none" : "block";
+}
+
+function toggleDarkMode() {
+  document.documentElement.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
