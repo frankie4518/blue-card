@@ -1,163 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Blue‑Card Staff Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-  body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: #0b1020;
-    color: #e5e7eb;
-  }
-
-  header {
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255,255,255,0.03);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-  }
-
-  .logo {
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-  .logo span {
-    color: #60a5fa;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 1rem;
-  }
-
-  .card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    color: #93c5fd;
-  }
-
-  .search {
-    width: 100%;
-    padding: 0.7rem;
-    border-radius: 12px;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: white;
-    margin-bottom: 1rem;
-  }
-
-  .customer {
-    padding: 0.8rem;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-    margin-bottom: 0.6rem;
-    cursor: pointer;
-  }
-
-  .btn {
-    padding: 0.6rem 1rem;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(135deg, #60a5fa, #2563eb);
-    color: white;
-    font-weight: 600;
-    margin-top: 0.8rem;
-  }
-
-  .online-dot {
-    width: 10px;
-    height: 10px;
-    background: #4ade80;
-    border-radius: 999px;
-    box-shadow: 0 0 10px #4ade80;
-    display: inline-block;
-    margin-right: 6px;
-  }
-</style>
+  <title>Blue‑Card – Hosting & Web Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- include style.css -->
 </head>
 
 <body>
 
 <header>
-  <div class="logo"><span>Blue</span>‑Card Staff</div>
-  <div><span class="online-dot"></span> Staff Online</div>
+  <div class="logo"><span>Blue</span>‑Card</div>
+  <a href="staff.html" class="btn-outline">Staff Login</a>
 </header>
 
 <div class="container">
 
   <div class="card">
-    <h2>Search Customers</h2>
-    <input class="search" id="searchBar" placeholder="Search by name or email…">
+    <h1>Simple, reliable hosting for small businesses.</h1>
+    <p>Blue‑Card keeps your website online, secure and cared for — with real humans behind it.</p>
+    <a href="mailto:sales@blue-card.co.uk" class="btn">Email to Register</a>
   </div>
 
   <div class="card">
-    <h2>Active Companies</h2>
-    <div id="companyList"></div>
-  </div>
-
-  <div class="card">
-    <h2>Add New Customer</h2>
-    <input id="newName" class="search" placeholder="Company name">
-    <input id="newEmail" class="search" placeholder="Contact email">
-    <button class="btn" onclick="addCustomer()">Add Customer</button>
+    <h2>What we do</h2>
+    <ul>
+      <li>Managed hosting</li>
+      <li>Domain & DNS care</li>
+      <li>Security & updates</li>
+      <li>Human support</li>
+    </ul>
   </div>
 
 </div>
-
-<script>
-  const customers = [
-    { name: "Great Lumley Community Centre", email: "contact@glcc.co.uk" },
-    { name: "North East Fitness", email: "info@nef.co.uk" }
-  ];
-
-  function renderList(list) {
-    const container = document.getElementById("companyList");
-    container.innerHTML = "";
-    list.forEach((c, i) => {
-      const div = document.createElement("div");
-      div.className = "customer";
-      div.innerHTML = `<strong>${c.name}</strong><br>${c.email}`;
-      div.onclick = () => {
-        window.location.href = "customer.html?id=" + i;
-      };
-      container.appendChild(div);
-    });
-  }
-
-  renderList(customers);
-
-  document.getElementById("searchBar").addEventListener("input", e => {
-    const q = e.target.value.toLowerCase();
-    const filtered = customers.filter(c =>
-      c.name.toLowerCase().includes(q) ||
-      c.email.toLowerCase().includes(q)
-    );
-    renderList(filtered);
-  });
-
-  function addCustomer() {
-    const name = document.getElementById("newName").value;
-    const email = document.getElementById("newEmail").value;
-    if (!name || !email) return alert("Enter name + email");
-    customers.push({ name, email });
-    renderList(customers);
-  }
-</script>
 
 </body>
 </html>
