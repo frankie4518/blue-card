@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blue Card – Hosting & Web Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --blue: #0b6efd;
+      --blue-dark: #084298;
+      --bg: #0b1120;
+      --card-bg: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d2a4a 0, #020617 55%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-icon::before,
+    .logo-icon::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .logo-icon::before {
+      width: 70%;
+      height: 70%;
+      border-top: none;
+      border-bottom: none;
+    }
+
+    .logo-icon::after {
+      width: 70%;
+      height: 70%;
+      border-left: none;
+      border-right: none;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .logo-text-main span {
+      color: var(--blue);
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .shell {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .badge-pill {
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.2);
+      color: #bfdbfe;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 3vw + 1rem, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+      text-decoration: none;
+    }
+
+    .btn-primary span {
+      font-size: 1.1rem;
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .meta-value {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.25), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(8, 47, 73, 0.7), #020617);
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 0.9rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .field {
+      margin-bottom: 0.75rem;
+    }
+
+    .field-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .field-value {
+      font-size: 0.85rem;
+      color: var(--text);
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.5rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .field-value code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8rem;
+      color: #bfdbfe;
+    }
+
+    .hint {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    footer {
+      padding: 1.25rem 1.5rem 1.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon" aria-hidden="true"></div>
+      <div>
+        <div class="logo-text-main"><span>Blue</span> Card</div>
+        <div class="logo-sub">Hosting & Web Solutions</div>
+      </div>
+    </div>
+    <div class="nav-pill">
+      <div class="nav-pill-dot"></div>
+      <span>Real humans. No demo mode.</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <section>
+        <div class="badge">
+          <span class="badge-pill">For small businesses</span>
+          <span>Simple, stable, production‑ready hosting</span>
+        </div>
+
+        <h1>Keep your website <span>online, secure</span> and off your mind.</h1>
+
+        <p class="lead">
+          Blue Card gives you NHS‑style reliability for your website: real infrastructure, real monitoring,
+          and real people who keep things running so you don’t have to.
+        </p>
+
+        <div class="pill-row">
+          <div class="pill">Managed hosting</div>
+          <div class="pill">Domain & DNS care</div>
+          <div class="pill">Security & updates</div>
+          <div class="pill">Human support</div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn-primary" href="mailto:sales@blue-card.co.uk?subject=Blue%20Card%20Website%20Onboarding&body=Hi%20Blue%20Card%2C%0D%0A%0D%0AWe%E2%80%99d%20like%20to%20register%20for%20your%20hosting%20service.%0D%0A%0D%0ABusiness%20name%3A%0D%0AContact%20name%3A%0D%0AContact%20number%3A%0D%0AExisting%20website%20URL%20(if%20any)%3A%0D%0A%0D%0AThanks.">
+            Email to register <span>→</span>
+          </a>
+          <div class="cta-note">
+            To register, just email <strong>sales@blue-card.co.uk</strong> with your details.  
+            No forms. No portals. Just a real inbox.
+          </div>
+        </div>
+
+        <div class="meta-row">
+          <div>
+            <div class="meta-label">Starting from</div>
+            <div class="meta-value">£20 setup · £6/month hosting</div>
+          </div>
+          <div>
+            <div class="meta-label">Designed for</div>
+            <div class="meta-value">Small businesses & community organisations</div>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card" aria-label="Registration details">
+          <div class="card-tag">Onboarding via email only</div>
+          <div class="card-title">How to register with Blue Card</div>
+          <div class="card-sub">
+            We don’t do demo dashboards or fake data.  
+            To open a real account, send us an email and we’ll set everything up with you.
+          </div>
+
+          <div class="field">
+            <div class="field-label">Step 1 · Send us an email</div>
+            <div class="field-value">
+              <code>sales@blue-card.co.uk</code>
+            </div>
+            <div class="hint">Use your business email if you have one.</div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">Step 2 · Include these details</div>
+            <div class="field-value">
+              <div>
+                Business name<br />
+                Contact name<br />
+                Phone number<br />
+                Existing website (if any)
+              </div>
+            </div>
+            <div class="hint">We’ll reply with a clear plan and next steps.</div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">Step 3 · We do the heavy lifting</div>
+            <div class="field-value">
+              <div>
+                We handle migration, DNS, and hosting setup.  
+                You get a stable, monitored website.
+              </div>
+            </div>
+          </div>
+
+          <div class="hint">
+            No self‑service sign‑up. Every Blue Card workspace is created intentionally, with real organisations and real data.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Blue Card. All rights reserved.</div>
+    <div>
+      Registration by email only: <a href="mailto:sales@blue-card.co.uk">sales@blue-card.co.uk</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
