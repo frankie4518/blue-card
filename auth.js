@@ -1,5 +1,5 @@
 const TENANT_ID = "7746fb37-f9d1-4d28-aa55-09bf3849365e";
-const CLIENT_ID = "YOUR_CLIENT_ID_HERE"; // from your app registration
+const CLIENT_ID = "b646d84a-07f5-44b2-8df5-2584c74040c5"; // from your app registration
 
 function login() {
   const redirectUri = window.location.origin + "/staff.html";
