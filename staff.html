@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Blue‑Card Staff Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- include style.css -->
+  <link rel="stylesheet" href="style.css">
   <script src="auth.js"></script>
-  <script src="data.js"></script>
+  <script src="api.js"></script>
 </head>
-
-<body onload="requireLogin(); loadDashboard();">
+<body onload="initStaffPage();">
 
 <header>
   <div class="logo"><span>Blue</span>‑Card Staff</div>
@@ -16,7 +15,6 @@
 </header>
 
 <div class="container">
-
   <div class="card">
     <h2>Search Customers</h2>
     <input class="search" id="searchBar" placeholder="Search…" oninput="searchCustomers()">
@@ -33,22 +31,30 @@
     <input id="newEmail" class="search" placeholder="Contact email">
     <button class="btn" onclick="addCustomer()">Add Customer</button>
   </div>
-
 </div>
 
 <script>
-  function loadDashboard() {
-    renderList(customers);
+  let customers = [];
+
+  async function initStaffPage() {
+    requireLogin();
+    try {
+      customers = await api.getCustomers();
+      renderList(customers);
+      api.heartbeat().catch(() => {});
+    } catch (e) {
+      alert("Error loading customers");
+    }
   }
 
   function renderList(list) {
     const container = document.getElementById("companyList");
     container.innerHTML = "";
-    list.forEach((c, i) => {
+    list.forEach(c => {
       const div = document.createElement("div");
       div.className = "customer";
       div.innerHTML = `<strong>${c.name}</strong><br>${c.email}`;
-      div.onclick = () => window.location.href = "customer.html?id=" + i;
+      div.onclick = () => window.location.href = "customer.html?id=" + encodeURIComponent(c.id);
       container.appendChild(div);
     });
   }
@@ -62,12 +68,20 @@
     renderList(filtered);
   }
 
-  function addCustomer() {
-    const name = document.getElementById("newName").value;
-    const email = document.getElementById("newEmail").value;
-    if (!name || !email) return alert("Enter name + email");
-    customers.push({ name, email, notes: [] });
-    renderList(customers);
+  async function addCustomer() {
+    const name = document.getElementById("newName").value.trim();
+    const email = document.getElementById("newEmail").value.trim();
+    if (!name || !email) return alert("Enter name and email");
+
+    try {
+      await api.addCustomer(name, email);
+      customers = await api.getCustomers();
+      renderList(customers);
+      document.getElementById("newName").value = "";
+      document.getElementById("newEmail").value = "";
+    } catch (e) {
+      alert("Error adding customer");
+    }
   }
 </script>
 
