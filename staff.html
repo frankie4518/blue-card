@@ -1,91 +1,36 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
 <html lang="en">
 <head>
-  <title>Blue‑Card Staff Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Staff Login — Blue‑Card</title>
   <link rel="stylesheet" href="style.css">
-  <script src="auth.js"></script>
-  <script src="api.js"></script>
-  <script src="auth.js"></script>
+  <script defer src="app.js"></script>
 </head>
-<body onload="initStaffPage();">
+<body>
 
 <header>
-  <div class="logo"><span>Blue</span>‑Card Staff</div>
-  <div><span class="online-dot"></span> Staff Online</div>
+  <div class="nav-left">
+    <div class="logo"><span>Blue</span>‑Card</div>
+  </div>
+  <div class="nav-right">
+    <button class="btn-outline" onclick="toggleDarkMode()">Dark mode</button>
+  </div>
 </header>
 
-<div class="container">
-  <div class="card">
-    <h2>Search Customers</h2>
-    <input class="search" id="searchBar" placeholder="Search…" oninput="searchCustomers()">
-  </div>
+<main class="main">
+  <section class="section">
+    <h2>Staff login</h2>
+    <p class="section-sub">Internal access only.</p>
 
-  <div class="card">
-    <h2>Active Companies</h2>
-    <div id="companyList"></div>
-  </div>
+    <div class="card">
+      <p>Staff authentication will be added later.</p>
+    </div>
+  </section>
+</main>
 
-  <div class="card">
-    <h2>Add New Customer</h2>
-    <input id="newName" class="search" placeholder="Company name">
-    <input id="newEmail" class="search" placeholder="Contact email">
-    <button class="btn" onclick="addCustomer()">Add Customer</button>
-  </div>
-</div>
-
-<script>
-  let customers = [];
-
-  async function initStaffPage() {
-    requireLogin();
-    try {
-      customers = await api.getCustomers();
-      renderList(customers);
-      api.heartbeat().catch(() => {});
-    } catch (e) {
-      alert("Error loading customers");
-    }
-  }
-
-  function renderList(list) {
-    const container = document.getElementById("companyList");
-    container.innerHTML = "";
-    list.forEach(c => {
-      const div = document.createElement("div");
-      div.className = "customer";
-      div.innerHTML = `<strong>${c.name}</strong><br>${c.email}`;
-      div.onclick = () => window.location.href = "customer.html?id=" + encodeURIComponent(c.id);
-      container.appendChild(div);
-    });
-  }
-
-  function searchCustomers() {
-    const q = document.getElementById("searchBar").value.toLowerCase();
-    const filtered = customers.filter(c =>
-      c.name.toLowerCase().includes(q) ||
-      c.email.toLowerCase().includes(q)
-    );
-    renderList(filtered);
-  }
-
-  async function addCustomer() {
-    const name = document.getElementById("newName").value.trim();
-    const email = document.getElementById("newEmail").value.trim();
-    if (!name || !email) return alert("Enter name and email");
-
-    try {
-      await api.addCustomer(name, email);
-      customers = await api.getCustomers();
-      renderList(customers);
-      document.getElementById("newName").value = "";
-      document.getElementById("newEmail").value = "";
-    } catch (e) {
-      alert("Error adding customer");
-    }
-  }
-</script>
+<footer>
+  <span>© Blue‑Card</span>
+</footer>
 
 </body>
 </html>
