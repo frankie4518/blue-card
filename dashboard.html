@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard — Blue‑Card</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+  <style>
+    /* DASHBOARD LAYOUT */
+    .dash-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 60px);
+    }
+
+    .dash-sidebar {
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .dash-sidebar h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .dash-link {
+      padding: 0.55rem 0.8rem;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .dash-link:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .dash-link.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .dash-main {
+      padding: 2rem;
+    }
+
+    .domain-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      background: var(--card);
+      cursor: pointer;
+    }
+
+    .domain-item:hover {
+      background: #f8fafc;
+    }
+
+    .domain-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .domain-name {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .domain-status {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .domain-details {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    html.dark .domain-item:hover {
+      background: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-left">
+    <div class="logo"><span>Blue</span>‑Card</div>
+  </div>
+  <div class="nav-right">
+    <button class="btn-outline" onclick="toggleDarkMode()">Dark mode</button>
+    <a href="index.html" class="nav-link">Logout</a>
+  </div>
+</header>
+
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <h3>Dashboard</h3>
+    <div class="dash-link active" onclick="showSection('domains')">My Domains</div>
+    <div class="dash-link" onclick="showSection('hosting')">My Hosting</div>
+    <div class="dash-link" onclick="showSection('billing')">Billing</div>
+    <div class="dash-link" onclick="showSection('support')">Support</div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="dash-main">
+
+    <!-- DOMAINS -->
+    <section id="domains" class="dash-section">
+      <h2>My Domains</h2>
+      <p class="section-sub">Domains you’ve registered or transferred to Blue‑Card.</p>
+
+      <!-- Example domain items (replace with API data later) -->
+      <div class="domain-item" onclick="toggleDomainDetails(this)">
+        <div class="domain-top">
+          <span class="domain-name">mybusiness.co.uk</span>
+          <span class="domain-status">Helping Hand</span>
+        </div>
+        <div class="domain-details">
+          <p><strong>Renewal:</strong> 12 Jan 2027</p>
+          <p><strong>DNS:</strong> Managed by Blue‑Card (Cloudflare)</p>
+          <p><strong>SSL:</strong> Active</p>
+          <button class="btn-outline" style="margin-top:0.5rem;">View DNS</button>
+        </div>
+      </div>
+
+      <div class="domain-item" onclick="toggleDomainDetails(this)">
+        <div class="domain-top">
+          <span class="domain-name">example.com</span>
+          <span class="domain-status" style="background:#e2e8f0; color:#475569;">Self‑Managed</span>
+        </div>
+        <div class="domain-details">
+          <p><strong>Renewal:</strong> 3 Aug 2026</p>
+          <p><strong>DNS:</strong> Customer‑managed</p>
+          <p><strong>SSL:</strong> Not applicable</p>
+          <button class="btn-outline" style="margin-top:0.5rem;">Manage Domain</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- HOSTING -->
+    <section id="hosting" class="dash-section" style="display:none;">
+      <h2>My Hosting</h2>
+      <p class="section-sub">Your hosted websites and services.</p>
+
+      <div class="card">
+        <p>No hosting services yet.</p>
+      </div>
+    </section>
+
+    <!-- BILLING -->
+    <section id="billing" class="dash-section" style="display:none;">
+      <h2>Billing</h2>
+      <p class="section-sub">Invoices, renewals and payment methods.</p>
+
+      <div class="card">
+        <p>Billing system coming soon.</p>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support" class="dash-section" style="display:none;">
+      <h2>Support</h2>
+      <p class="section-sub">Get help with your domains or hosting.</p>
+
+      <div class="card">
+        <p>Email us at <a href="mailto:support@blue-card.co.uk">support@blue-card.co.uk</a></p>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.dash-section').forEach(sec => sec.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+
+  document.querySelectorAll('.dash-link').forEach(link => link.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function toggleDomainDetails(el) {
+  const details = el.querySelector('.domain-details');
+  details.style.display = details.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>
