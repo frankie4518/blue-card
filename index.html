@@ -1,127 +1,147 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
 <html lang="en">
 <head>
-  <title>Blue‑Card – Hosting & Web Solutions</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Blue‑Card — Hosting & Domains that feel human</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
 </head>
 <body>
 
 <header>
-  <div class="logo"><span>Blue</span>‑Card</div>
-  <div>
-    <button class="btn-outline" onclick="toggleDarkMode()">Dark Mode</button>
-    <a href="staff.html" class="btn-outline">Staff Login</a>
+  <div class="nav-left">
+    <div class="logo"><span>Blue</span>‑Card</div>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="domains.html" class="nav-link">Domains</a>
+  </div>
+  <div class="nav-right">
+    <button class="btn-outline" onclick="toggleDarkMode()">Dark mode</button>
+    <a href="login.html" class="nav-link">Login</a>
+    <a href="staff.html" class="btn-outline">Staff</a>
   </div>
 </header>
 
-<div class="container">
+<main class="main">
 
-  <!-- HERO -->
   <section class="hero">
-    <h1>Hosting that feels human.</h1>
-    <p>
-      Blue‑Card keeps your website online, secure and cared for — with the calm, clinical reliability of NHS‑style systems and the modern polish of Microsoft Azure.
-    </p>
-    <br>
-    <a href="mailto:sales@blue-card.co.uk" class="btn">Get Started</a>
+    <div class="hero-left">
+      <h1>Hosting and domains that feel looked after.</h1>
+      <p>
+        Blue‑Card keeps your website and domain online, secure and cared for — with the calm, clinical reliability of NHS‑style systems and the clarity of Microsoft‑inspired design.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">Managed hosting</span>
+        <span class="badge">Domain care</span>
+        <span class="badge">Helping Hand or self‑managed</span>
+      </div>
+      <div class="hero-actions">
+        <a href="domains.html" class="btn">Find a domain</a>
+        <a href="mailto:sales@blue-card.co.uk" class="btn-outline">Talk to us</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <h3>At a glance</h3>
+      <div class="hero-metric">
+        <span>Managed domains</span>
+        <span>Growing</span>
+      </div>
+      <div class="hero-metric">
+        <span>Uptime target</span>
+        <span>99.9%</span>
+      </div>
+      <div class="hero-metric">
+        <span>Support</span>
+        <span>Human‑first</span>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-top:1rem;">
+        We specialise in small businesses, charities and local services who want their web presence quietly handled.
+      </p>
+    </div>
   </section>
 
-  <!-- WHY WE'RE DIFFERENT -->
-  <div class="card">
+  <section class="section">
+    <h2>What we do</h2>
+    <p class="section-sub">Simple, opinionated services that remove the stress of “is my website okay?”</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Managed hosting</h3>
+        <p>We host your site on modern infrastructure, monitor uptime and keep things quietly running.</p>
+      </div>
+      <div class="card">
+        <h3>Domain management</h3>
+        <p>We register, renew and protect your domains, with clear records of who owns what.</p>
+      </div>
+      <div class="card">
+        <h3>Helping Hand mode</h3>
+        <p>We handle DNS, SSL, and routing for you — you just use your website.</p>
+      </div>
+      <div class="card">
+        <h3>Self‑managed mode</h3>
+        <p>Prefer control? You still buy through Blue‑Card, but manage DNS yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <h2>Why we’re different</h2>
-    <div class="grid" style="margin-top:1.5rem;">
-      <div>
-        <h3>Clinical reliability</h3>
-        <p>Inspired by NHS and GOV.UK design — clear, calm, trustworthy.</p>
+    <p class="section-sub">Less “web hosting jargon”, more calm, auditable care.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Clinical clarity</h3>
+        <p>Inspired by NHS and GOV.UK — clear language, no tricks, no upsell maze.</p>
       </div>
-      <div>
-        <h3>Microsoft‑style clarity</h3>
-        <p>Clean layouts, strong typography, and a focus on usability.</p>
+      <div class="card">
+        <h3>Microsoft‑style structure</h3>
+        <p>Consistent layouts, predictable navigation, and a dashboard that feels like a real tool.</p>
       </div>
-      <div>
-        <h3>Human support</h3>
-        <p>No bots. No scripts. Just real people who care about your site.</p>
+      <div class="card">
+        <h3>Human escalation</h3>
+        <p>When something looks wrong, a human checks it — not just a bot.</p>
       </div>
-      <div>
-        <h3>Everything included</h3>
-        <p>Backups, security, DNS, uptime monitoring — all in one price.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <div class="card">
-    <h2>How it works</h2>
-    <div class="grid" style="margin-top:1.5rem;">
-      <div>
-        <h3>1. We onboard you</h3>
-        <p>Send us your domain or website details — we handle the setup.</p>
-      </div>
-      <div>
-        <h3>2. We monitor everything</h3>
-        <p>Uptime, security, renewals, backups — all taken care of.</p>
-      </div>
-      <div>
-        <h3>3. You get peace of mind</h3>
-        <p>Your website stays online, fast and secure — without the stress.</p>
+      <div class="card">
+        <h3>Audit‑friendly</h3>
+        <p>We keep a clear record of domains, changes and who requested what.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- TEAM -->
-  <div class="card">
-    <h2>Meet the team</h2>
-    <div class="grid" style="margin-top:1.5rem;">
-      <div class="team-card">
-        <h3>Frankie</h3>
-        <p>Founder & Systems Architect</p>
-      </div>
-      <div class="team-card">
-        <h3>Support Team</h3>
-        <p>Real humans, real help — always here for you.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="card">
+  <section class="section">
     <h2>FAQ</h2>
-
     <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">What’s included in the £15/month?</div>
-      <div class="faq-answer">Everything — hosting, backups, DNS, security, monitoring, and support.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span>Do I have to move my existing domain?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        No. We can either transfer it to Blue‑Card or manage it in place, depending on what’s safest.
+      </div>
     </div>
-
     <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">Do you migrate my website?</div>
-      <div class="faq-answer">Yes — we handle the full migration at no extra cost.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span>What’s the difference between Helping Hand and self‑managed?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        Helping Hand means we manage DNS, SSL and routing for you. Self‑managed means you control DNS, but still buy and renew through Blue‑Card.
+      </div>
     </div>
-
     <div class="faq-item">
-      <div class="faq-question" onclick="toggleFAQ(this)">Is there a contract?</div>
-      <div class="faq-answer">No — cancel anytime.</div>
+      <div class="faq-q" onclick="toggleFAQ(this)">
+        <span>Can you migrate my existing website?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        Yes. We’ll agree a safe migration window and handle the technical steps for you.
+      </div>
     </div>
+  </section>
 
-  </div>
+</main>
 
-</div>
-
-<footer style="text-align:center; padding:2rem; color:#64748b;">
-  © Blue‑Card — Hosting & Web Solutions
+<footer>
+  <span>© Blue‑Card — Hosting & Web Solutions</span>
+  <span><a href="mailto:sales@blue-card.co.uk">sales@blue-card.co.uk</a></span>
 </footer>
-
-<script>
-function toggleFAQ(el) {
-  const answer = el.nextElementSibling;
-  answer.style.display = answer.style.display === "block" ? "none" : "block";
-}
-
-function toggleDarkMode() {
-  document.documentElement.classList.toggle("dark");
-}
-</script>
 
 </body>
 </html>
