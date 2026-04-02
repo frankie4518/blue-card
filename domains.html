@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy a domain — Blue‑Card</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="nav-left">
+    <div class="logo"><span>Blue</span>‑Card</div>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="domains.html" class="nav-link active">Domains</a>
+  </div>
+  <div class="nav-right">
+    <button class="btn-outline" onclick="toggleDarkMode()">Dark mode</button>
+    <a href="login.html" class="nav-link">Login</a>
+    <a href="staff.html" class="btn-outline">Staff</a>
+  </div>
+</header>
+
+<main class="main">
+
+  <section class="section">
+    <h2>Find and register a domain</h2>
+    <p class="section-sub">Search for a domain and choose Helping Hand or self‑managed control.</p>
+
+    <div class="card">
+      <div class="domain-search-bar">
+        <input id="domainSearch" class="input" placeholder="mybusiness">
+        <select id="tldSelect" class="input">
+          <option>.co.uk</option>
+          <option>.com</option>
+          <option>.net</option>
+          <option>.org</option>
+        </select>
+        <button class="btn" onclick="searchDomain()">Search</button>
+      </div>
+    </div>
+
+    <div id="searchResults" style="margin-top:1.5rem;"></div>
+    <div id="checkoutPanel" style="margin-top:1.5rem;"></div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© Blue‑Card — Hosting & Web Solutions</span>
+  <span><a href="mailto:sales@blue-card.co.uk">sales@blue-card.co.uk</a></span>
+</footer>
+
+</body>
+</html>
